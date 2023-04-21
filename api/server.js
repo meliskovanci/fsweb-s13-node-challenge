@@ -4,6 +4,7 @@ const projectsRouter = require("./projects/projects-router");
 const actionsRouter = require("./actions/actions-router");
 
 const server = express();
+server.use(express.json());
 
 // Sunucunuzu yapılandırın
 // Eylem routerınızı /api/actions/actions-router.js içinde oluşturun
