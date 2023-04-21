@@ -4,11 +4,12 @@ const Projects = require("./projects-model");
 
 async function checkProjectId(req,res,next){
     try {
-        const projectId = await Projects.get(req.params.id)
-        if(!projectId){
+        const project = await Projects.get(req.params.id)
+        if(!project){
            res.status(404).json({message: "Bu id'ye sahip bir proje yoktur."}) 
+           next()
         }else {
-          res.status(projectId) 
+          req.project = project;
           next() 
         }
         
@@ -22,6 +23,7 @@ async function checkReqBody(req,res,next){
     try {
         if(!name || !description || completed === undefined ){
             res.status(400).json({message:"Eksik bilgi var"})
+            next()
         }else {
             req.update = {name, description, completed};
             next() 
