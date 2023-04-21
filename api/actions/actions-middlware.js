@@ -18,7 +18,7 @@ async function checkActionId(req,res,next){
 
 
 async function checkActionBody (req,res,next){
-    const {project_id, description, notes, completed} = res.body;
+    const {project_id, description, notes, completed} = req.body;
     try {
         if(!project_id || !description || !notes || completed === undefined){
             res.status(400).json({message:"Eksik bilgi var"})
